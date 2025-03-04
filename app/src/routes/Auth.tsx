@@ -10,7 +10,7 @@ import router from "@/router.tsx";
 import { useTranslation } from "react-i18next";
 import { getQueryParam } from "@/utils/path.ts";
 import { setMemory } from "@/utils/memory.ts";
-import { appLogo, appName, useDeeptrain } from "@/conf/env.ts";
+import { appLogo, appName } from "@/conf/env.ts";
 import { Card, CardContent } from "@/components/ui/card.tsx";
 import { goAuth } from "@/utils/app.ts";
 import { Label } from "@/components/ui/label.tsx";
@@ -25,7 +25,7 @@ function DeepAuth() {
   const { toast } = useToast();
   const { t } = useTranslation();
   const dispatch = useDispatch();
-  const token = getQueryParam("token").trim();
+  const token = getQueryParam("code").trim();
 
   useEffect(() => {
     if (!token.length) {
@@ -207,24 +207,25 @@ function Login() {
       </Card>
       <div className={`auth-card addition-wrapper`}>
         <div className={`row`}>
-          {t("auth.no-account")}
-          <a className={`link`} onClick={() => router.navigate("/register")}>
-            {t("auth.register")}
+          {/*{t("auth.no-account")}*/}
+          <a className={`link`} href={import.meta.env.VITE_MGCC_AUTH} target="_self">
+            MGCC内部登录
           </a>
         </div>
-        <div className={`row`}>
-          {t("auth.forgot-password")}
-          <a className={`link`} onClick={() => router.navigate("/forgot")}>
-            {t("auth.reset-password")}
-          </a>
-        </div>
+        {/*<div className={`row`}>*/}
+        {/*  {t("auth.forgot-password")}*/}
+        {/*  <a className={`link`} onClick={() => router.navigate("/forgot")}>*/}
+        {/*    {t("auth.reset-password")}*/}
+        {/*  </a>*/}
+        {/*</div>*/}
       </div>
     </div>
   );
 }
 
 function Auth() {
-  return useDeeptrain ? <DeepAuth /> : <Login />;
+  const mgccCode = getQueryParam("code").trim();
+  return mgccCode ? <DeepAuth /> : <Login />;
 }
 
 export default Auth;
