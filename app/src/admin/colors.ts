@@ -76,7 +76,10 @@ export const modelColorMapper: Record<string, string> = {
   // ByteDance Skylark / Doubao / Coze
   skylark: "sky-300",
   doubao: "sky-300",
-  coze: "sky-300",
+  coze: "indigo-400",
+
+  // Dify
+  dify: "gray-300",
 
   // OpenRouter
   openrouter: "purple-600",

@@ -6,8 +6,10 @@ import (
 	"chat/adapter/bing"
 	"chat/adapter/claude"
 	adaptercommon "chat/adapter/common"
+	"chat/adapter/coze"
 	"chat/adapter/dashscope"
 	"chat/adapter/deepseek"
+	"chat/adapter/dify"
 	"chat/adapter/hunyuan"
 	"chat/adapter/midjourney"
 	"chat/adapter/openai"
@@ -37,6 +39,8 @@ var channelFactories = map[string]adaptercommon.FactoryCreator{
 	globals.ZhinaoChannelType:      zhinao.NewChatInstanceFromConfig,
 	globals.MidjourneyChannelType:  midjourney.NewChatInstanceFromConfig,
 	globals.DeepseekChannelType:    deepseek.NewChatInstanceFromConfig,
+	globals.DifyChannelType:        dify.NewChatInstanceFromConfig,
+	globals.CozeChannelType:        coze.NewChatInstanceFromConfig,
 
 	globals.MoonshotChannelType: openai.NewChatInstanceFromConfig, // openai format
 	globals.GroqChannelType:     openai.NewChatInstanceFromConfig, // openai format
